@@ -9,10 +9,10 @@
 
 ## 👥 Thành viên nhóm & Phân công nhiệm vụ
 
-| STT | Họ và tên | MSSV | Vai trò | Nhiệm vụ chính phụ trách |
-| :---: | :--- | :---: | :---: | :--- |
-| 1 | [Điền tên SV1] | [Điền MSSV 1] | **SV1** | Trích xuất hóa đơn (Amazon Textract), Data Lake phân tích dữ liệu (Amazon S3, AWS Glue, Amazon Athena), thu thập dữ liệu mẫu. |
-| 2 | [Điền tên SV2] | [Điền MSSV 2] | **SV2** | Mạng & Bảo mật (VPC, Security Group, IAM LabRole), Cơ sở dữ liệu (Amazon DynamoDB), RESTful API CRUD (API Gateway + Lambda), Quản lý Repository. |
+| STT | Họ và tên | MSSV | Vai trò | Nhiệm vụ chính phụ trách | Tag Owner |
+| :---: | :--- | :---: | :---: | :--- | :---: |
+| 1 | **Lê Trọng Nghĩa** | `24110286` | **SV1** | Trích xuất hóa đơn (Amazon Textract), Data Lake phân tích dữ liệu (Amazon S3, AWS Glue, Amazon Athena), thu thập dữ liệu mẫu. | `LeTrongNghia` |
+| 2 | **Nguyễn Thành Thắng** | `24110332` | **SV2** | Mạng & Bảo mật (VPC, Security Group, IAM LabRole), Cơ sở dữ liệu (Amazon DynamoDB), RESTful API CRUD (API Gateway + Lambda), Quản lý Repository. | `NguyenThanhThang` |
 
 ---
 
@@ -60,4 +60,4 @@ aws-expense-tracker/
 - **IAM Role:** Tái sử dụng `LabRole` có sẵn, không tạo IAM User/Role mới.
 - **Tagging chuẩn:**
   - `Project`: `ExpenseTracker`
-  - `Owner`: `SV1_<Ten_SV1>` hoặc `SV2_<Ten_SV2>`
+  - `Owner`: `LeTrongNghia` (SV1) hoặc `NguyenThanhThang` (SV2)
