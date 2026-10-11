@@ -1,0 +1,48 @@
+[
+  {
+    "userId": "user_01",
+    "transactionId": "TX#2026-10-01T08:15:00#a1111111",
+    "amount": 45000,
+    "currency": "VND",
+    "category": "Food & Dining",
+    "type": "EXPENSE",
+    "merchant": "Phở Hùng",
+    "description": "Ăn sáng",
+    "createdAt": "2026-10-01T08:15:00Z"
+  },
+  {
+    "userId": "user_01",
+    "transactionId": "TX#2026-10-05T12:30:00#a2222222",
+    "amount": 125000,
+    "currency": "VND",
+    "category": "Food & Dining",
+    "type": "EXPENSE",
+    "merchant": "Highlands Coffee",
+    "description": "Cà phê & cơm trưa văn phòng",
+    "receiptUrl": "s3://expense-raw-receipts-24110332/receipt_01.jpg",
+    "createdAt": "2026-10-05T12:30:00Z"
+  },
+  {
+    "userId": "user_01",
+    "transactionId": "TX#2026-10-08T19:00:00#a3333333",
+    "amount": 350000,
+    "currency": "VND",
+    "category": "Shopping",
+    "type": "EXPENSE",
+    "merchant": "Co.opmart Thủ Đức",
+    "description": "Mua đồ dùng sinh hoạt",
+    "receiptUrl": "s3://expense-raw-receipts-24110332/receipt_02.pdf",
+    "createdAt": "2026-10-08T19:00:00Z"
+  },
+  {
+    "userId": "user_01",
+    "transactionId": "TX#2026-10-10T09:00:00#a4444444",
+    "amount": 15000000,
+    "currency": "VND",
+    "category": "Salary",
+    "type": "INCOME",
+    "merchant": "Công ty TNHH Phần mềm",
+    "description": "Lương tháng 10",
+    "createdAt": "2026-10-10T09:00:00Z"
+  }
+]
