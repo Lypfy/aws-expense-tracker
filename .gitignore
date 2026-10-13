@@ -1,0 +1,8 @@
+# Node / Python
+__pycache__/
+*.pyc
+.env
+
+# Project ignore folder
+ignores/
+*.docx
