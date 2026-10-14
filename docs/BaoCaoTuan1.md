@@ -3,7 +3,6 @@
 - Đề tài: Ứng dụng quản lý chi tiêu cá nhân với phân tích dữ liệu (Expense Tracker)
 - Repository GitHub (Public): https://github.com/Lypfy/aws-expense-tracker
 - Region triển khai: us-east-1 (US East - N. Virginia)
-- AWS Account ID: 2593-5119-2274 | Môi trường: AWS Academy Learner Lab
 ---
 ## I. BẢNG PHÂN CÔNG CÔNG VIỆC VÀ THỜI GIAN LÀM VIỆC (≥ 8 GIỜ/SV)
 | Thành viên | Vai trò | Số giờ | Công việc chi tiết đảm nhiệm | Sản phẩm minh chứng trên GitHub |
@@ -49,7 +48,7 @@
 - Nghiên cứu luồng đưa dữ liệu lên S3, sử dụng Glue và Athena để phân tích chi tiêu.
 - Tổng hợp kết quả nghiên cứu, xây dựng sơ đồ luồng xử lý và cập nhật tài liệu lên GitHub.
   - Link file nghiên cứu: [docs/Textract_AnalyzeExpense.md](https://github.com/Lypfy/aws-expense-tracker/blob/main/docs/Textract_AnalyzeExpense.md)
-### 6. Thiết kế và vẽ sơ đồ kiến trúc hệ thống tổng thể (Architecture Diagram) (SV1):
+### 6. Thiết kế và vẽ sơ đồ kiến trúc hệ thống tổng thể (SV1):
 - Thiết kế kiến trúc tổng thể cho ứng dụng quản lý chi tiêu cá nhân với phân tích dữ liệu trên AWS, hỗ trợ ghi nhận giao dịch, trích xuất thông tin hóa đơn và thống kê chi tiêu.
 - Luồng hoạt động:
   + Ghi nhận chi tiêu: Người dùng nhập giao dịch, hệ thống xử lý qua API Gateway và Lambda, sau đó lưu vào DynamoDB.
@@ -57,7 +56,7 @@
   + Phân tích dữ liệu: Dữ liệu phù hợp được tổ chức trên S3, AWS Glue quản lý metadata và Amazon Athena truy vấn phục vụ báo cáo.
   - Link sơ đồ kiến trúc: [docs/aws_architecture_user_diagram_plus.drawio.png](https://github.com/Lypfy/aws-expense-tracker/blob/main/docs/aws_architecture_user_diagram_plus.drawio.png)
 ---
-## III. MINH CHỨNG LỊCH SỬ COMMIT TRÊN GITHUB (COMMIT MESSAGES)
+## III. MINH CHỨNG LỊCH SỬ COMMIT TRÊN GITHUB
 Toàn bộ tiến độ công việc Tuần 1 được phản ánh rõ ràng qua các Git commit có ý nghĩa trên nhánh `main`:
 - Link xem toàn bộ lịch sử commit: [Lịch sử Commit Tuần 1](https://github.com/Lypfy/aws-expense-tracker/commits/main)
 
@@ -106,8 +105,8 @@ Tuân thủ nghiêm ngặt quy chế môn học về việc minh bạch khi ứn
   - Commit minh chứng của SV2: [more screenshots and updated README.md](https://github.com/Lypfy/aws-expense-tracker/commit/84159807fa364e5264b15926ec0ea797bce17804)
 
 ### 4. Gemini (Gemini 3.8 Flash)
-- **Prompt:** "Hỗ trợ phân tích yêu cầu lưu trữ dữ liệu giao dịch chi tiêu trên Amazon DynamoDB và xây dựng đặc tả 5 RESTful API CRUD. Đồng thời, hỗ trợ viết mã nguồn khung (skeleton handler) bằng Python SDK (boto3) cho Lambda CRUD Transactions và Lambda OCR Receipt Processor xử lý sự kiện S3 Event Notification gọi Amazon Textract."
-- **AI tạo ra:** Các gợi ý về cấu trúc và thiết kế khóa cho bảng DynamoDB Transactions; khung đặc tả OpenAPI cho 5 endpoints CRUD; mã nguồn khung (boilerplate code) cho 2 hàm Lambda (`transactions/handler.py` và `ocr-processor/handler.py`).
+- **Prompt:** "Hỗ trợ phân tích yêu cầu lưu trữ dữ liệu giao dịch chi tiêu trên Amazon DynamoDB và xây dựng đặc tả 5 RESTful API CRUD. Đồng thời, hỗ trợ viết mã nguồn khung bằng Python SDK (boto3) cho Lambda CRUD Transactions và Lambda OCR Receipt Processor xử lý sự kiện S3 Event Notification gọi Amazon Textract."
+- **AI tạo ra:** Các gợi ý về cấu trúc và thiết kế khóa cho bảng DynamoDB Transactions; khung đặc tả OpenAPI cho 5 endpoints CRUD; khung mã nguồn cho 2 hàm Lambda (`transactions/handler.py` và `ocr-processor/handler.py`).
 - **SV đã sửa:**
   - **SV2 (Nguyễn Thành Thắng):** Đánh giá và chọn lọc các gợi ý phù hợp; hoàn thiện tài liệu đặc tả 5 REST API CRUD chuẩn OpenAPI Specification; chuẩn hóa mã nguồn khung Lambda backend `backend/functions/transactions/handler.py` (tích hợp CORS header, bọc mã ngoại lệ `500`, chuẩn hóa mã trạng thái HTTP).
   - **SV1 (Lê Trọng Nghĩa):** Kiểm tra cấu trúc phân tích sự kiện S3 Event (`event['Records'][0]['s3']`), bổ sung giải mã URL an toàn cho tên file (`urllib.parse.unquote_plus`), thiết lập cấu trúc dữ liệu trích xuất chuẩn và hoàn thiện mã nguồn khung `backend/functions/ocr-processor/handler.py`.
