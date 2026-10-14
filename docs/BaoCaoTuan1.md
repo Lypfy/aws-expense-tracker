@@ -8,7 +8,7 @@
 ## I. BẢNG PHÂN CÔNG CÔNG VIỆC VÀ THỜI GIAN LÀM VIỆC (≥ 8 GIỜ/SV)
 | Thành viên | Vai trò | Số giờ | Công việc chi tiết đảm nhiệm | Sản phẩm minh chứng trên GitHub |
 | :--- | :---: | :---: | :--- | :--- |
-| **Lê Trọng Nghĩa**<br>(MSSV: 24110286) | SV1 | **8.5h** | - Nghiên cứu cơ chế trích xuất Textract AnalyzeExpense.<br>- Nghiên cứu luồng Data Lake (S3 -> Glue -> Athena).<br>- Khởi tạo 2 S3 Buckets, cấu hình Tag.<br>- Thu thập 15-20 file hóa đơn mẫu.<br>- Xây dựng mã nguồn khung Lambda OCR Processor. | - Bucket S3: `expense-raw-receipts-24110286`, `expense-analytics-data-24110286`<br>- Dữ liệu hóa đơn mẫu: [data/sample-receipts](https://github.com/Lypfy/aws-expense-tracker/tree/main/data/sample-receipts)<br>- Code Lambda OCR: [backend/functions/ocr-processor/handler.py](https://github.com/Lypfy/aws-expense-tracker/blob/main/backend/functions/ocr-processor/handler.py) |
+| **Lê Trọng Nghĩa**<br>(MSSV: 24110286) | SV1 | **8.5h** | - Nghiên cứu cơ chế trích xuất Textract AnalyzeExpense.<br>- Nghiên cứu luồng Data Lake (S3 -> Glue -> Athena).<br>- Khởi tạo 2 S3 Buckets, cấu hình Tag.<br>- Thu thập 15-20 file hóa đơn mẫu.<br>- Xây dựng mã nguồn khung Lambda OCR Processor. | - Sơ đồ kiến trúc: <br> - Textract AnalyzeExpense: <br> - Bucket S3: `expense-raw-receipts-24110286`, `expense-analytics-data-24110286`<br>- Dữ liệu hóa đơn mẫu: [data/sample-receipts](https://github.com/Lypfy/aws-expense-tracker/tree/main/data/sample-receipts)<br>- Code Lambda OCR: [backend/functions/ocr-processor/handler.py](https://github.com/Lypfy/aws-expense-tracker/blob/main/backend/functions/ocr-processor/handler.py) |
 | **Nguyễn Thành Thắng**<br>(MSSV: 24110332) | SV2 | **8.5h** | - Khảo sát bảo mật IAM LabRole, phân tích VocLabPolicy.<br>- Khởi tạo Default VPC Security Group, gắn Tag.<br>- Thiết kế schema NoSQL, khởi tạo bảng DynamoDB Transactions (On-Demand).<br>- Đặc tả 5 REST API CRUD, tạo mock data và dựng repo Git.<br>- Xây dựng mã nguồn khung Lambda Transactions CRUD. | - Security Group: `expense-tracker-sg`<br>- Bảng DynamoDB: `Transactions`<br>- Code Lambda CRUD: [backend/functions/transactions/handler.py](https://github.com/Lypfy/aws-expense-tracker/blob/main/backend/functions/transactions/handler.py)<br>- Đặc tả API: [docs/api/transactions-api.md](https://github.com/Lypfy/aws-expense-tracker/blob/main/docs/api/transactions-api.md)<br>- Schema CSDL: [docs/dynamodb-schema.md](https://github.com/Lypfy/aws-expense-tracker/blob/main/docs/dynamodb-schema.md)<br>- Dữ liệu giả lập: [data/mock-transactions.json](https://github.com/Lypfy/aws-expense-tracker/blob/main/data/mock-transactions.json) |
 ---
 ## II. CHI TIẾT CÔNG VIỆC VÀ LIÊN KẾT MINH CHỨNG CỤ THỂ TRÊN GITHUB
@@ -39,6 +39,24 @@
   - Link thư mục hóa đơn mẫu: [data/sample-receipts](https://github.com/Lypfy/aws-expense-tracker/tree/main/data/sample-receipts)
 - Khởi tạo mã nguồn khung Lambda xử lý sự kiện S3 Event Notification gọi Textract AnalyzeExpense:
   - Link mã nguồn Lambda OCR: [backend/functions/ocr-processor/handler.py](https://github.com/Lypfy/aws-expense-tracker/blob/main/backend/functions/ocr-processor/handler.py)
+---
+### 5. Nghiên cứu cơ chế đọc hóa đơn của Textract (AnalyzeExpense) và luồng
+- Tìm hiểu chức năng và cơ chế hoạt động của Textract AnalyzeExpense.
+- Xác định các thông tin có thể trích xuất từ hóa đơn: tên cửa hàng, ngày giao dịch, tổng tiền, thuế và chi tiết mặt hàng.
+- Tìm hiểu cấu trúc dữ liệu JSON mà Textract trả về.
+- Nghiên cứu cách tích hợp Textract với S3 và Lambda để xử lý hóa đơn.
+- Tìm hiểu cách chuẩn hóa, kiểm tra và lưu dữ liệu giao dịch vào DynamoDB.
+- Nghiên cứu luồng đưa dữ liệu lên S3, sử dụng Glue và Athena để phân tích chi tiêu.
+- Tổng hợp kết quả nghiên cứu, xây dựng sơ đồ luồng xử lý và cập nhật tài liệu lên GitHub.
+Link file nghiên cứu: https://github.com/Lypfy/aws-expense-tracker/blob/main/docs/Textract_AnalyzeExpense.md
+---
+### 6. Thiết kế và vẽ sơ đồ kiến trúc hệ thống tổng thể (Architecture Diagram). (SV 1 thực hiện ) 
+- Thiết kế kiến trúc tổng thể cho ứng dụng quản lý chi tiêu cá nhân với phân tích dữ liệu trên AWS, hỗ trợ ghi nhận giao dịch, trích xuất thông tin hóa đơn và thống kê chi tiêu.
+- Luồng hoạt động
+  + Ghi nhận chi tiêu: Người dùng nhập giao dịch, hệ thống xử lý qua API Gateway và Lambda, sau đó lưu vào DynamoDB.
+  + Xử lý hóa đơn: Hóa đơn được lưu trên S3, Textract trích xuất thông tin, sau đó dữ liệu được kiểm tra và lưu trữ.
+  + Phân tích dữ liệu: Dữ liệu phù hợp được tổ chức trên S3, AWS Glue quản lý metadata và Amazon Athena thực hiện truy vấn phục vụ báo cáo.
+- Link sơ đồ kiến trúc: https://github.com/Lypfy/aws-expense-tracker/blob/main/docs/aws_architecture_user_diagram_plus.drawio.png
 ---
 ## III. MINH CHỨNG LỊCH SỬ COMMIT TRÊN GITHUB (COMMIT MESSAGES)
 Toàn bộ tiến độ công việc Tuần 1 được phản ánh rõ ràng qua các Git commit có ý nghĩa trên nhánh `main`:
