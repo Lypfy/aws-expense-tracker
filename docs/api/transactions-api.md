@@ -1,7 +1,7 @@
 # ĐẶC TẢ RESTFUL API - GIAO DỊCH CHI TIÊU (EXPENSE TRANSACTIONS API)
 **Mô-đun:** Quản lý giao dịch chi tiêu (Backend Serverless)  
 **Phụ trách:** Sinh viên 2 (SV2)  
-**Base URL (Dự kiến Tuần 2):** `https://<api-id>.execute-api.us-east-1.amazonaws.com/prod`  
+**Base URL (Dự kiến Tuần 2):** `https://<api-id>.execute-api.us-east-1.amazonaws.com/dev`  
 
 ---
 
