@@ -187,3 +187,19 @@ Tuân thủ nghiêm ngặt quy chế môn học về việc minh bạch khi ứn
   - File đặc tả API: [docs/api/transactions-api.md](https://github.com/Lypfy/aws-expense-tracker/blob/main/docs/api/transactions-api.md)
   - Ảnh test Postman: [screenshots/tuan2/postman_test_01.png](https://github.com/Lypfy/aws-expense-tracker/blob/main/screenshots/tuan2/postman_test_01.png), [screenshots/tuan2/postman_test_02.png](https://github.com/Lypfy/aws-expense-tracker/blob/main/screenshots/tuan2/postman_test_02.png)
   - Commit của SV2: [add week 2 test screenshots for API Gateway and DynamoDB](https://github.com/Lypfy/aws-expense-tracker/commit/2c0b830d69e33d733f14cce7a638347b754d474a)
+
+## V. KẾ HOẠCH THỰC HIỆN TUẦN 3
+
+Trong tuần 3, nhóm tập trung tích hợp các dịch vụ AWS đã triển khai, tăng cường bảo mật, thiết lập giám sát hệ thống và nghiên cứu khả năng tự động hóa quá trình triển khai.
+
+1. **Tích hợp hệ thống:** Kết nối giao diện frontend với Amazon API Gateway và AWS Lambda; hoàn thiện luồng tải hóa đơn lên Amazon S3, trích xuất thông tin bằng Amazon Textract và lưu dữ liệu vào DynamoDB. Kiểm tra khả năng đồng bộ dữ liệu giữa các dịch vụ.
+
+2. **Tăng cường bảo mật:** Rà soát quyền truy cập của IAM Role `LabRole`, kiểm tra quyền đọc/ghi trên S3 và DynamoDB, bảo vệ các API và xác minh việc xử lý dữ liệu đầu vào nhằm hạn chế truy cập trái phép.
+
+3. **Giám sát hệ thống bằng Amazon CloudWatch:** Theo dõi Lambda Logs, kiểm tra lỗi phát sinh trong quá trình xử lý hóa đơn và gọi API; theo dõi thời gian thực thi, số lần gọi và lỗi của Lambda để hỗ trợ phát hiện, khắc phục sự cố.
+
+4. **Nghiên cứu tự động hóa và IaC:** Tìm hiểu AWS CloudFormation hoặc AWS SAM để mô tả và tự động hóa việc triển khai các tài nguyên như Lambda, API Gateway và cấu hình liên quan. Đánh giá tính khả thi trong môi trường AWS Academy Learner Lab trước khi áp dụng.
+
+5. **Kiểm thử và hoàn thiện:** Kiểm thử tích hợp toàn bộ hệ thống, xác minh tính chính xác của dữ liệu, kiểm tra các trường hợp lỗi và rà soát mức sử dụng tài nguyên AWS nhằm hạn chế chi phí phát sinh.
+
+**Kết quả dự kiến:** Hoàn thiện quá trình tích hợp các thành phần chính của Expense Tracker, thiết lập cơ chế giám sát bằng CloudWatch, rà soát bảo mật và có phương án tự động hóa triển khai phù hợp với giới hạn của môi trường AWS Academy.
