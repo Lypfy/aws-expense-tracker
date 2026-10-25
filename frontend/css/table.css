@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Transactions Table & Toolbar Components
+   ========================================================================== */
+
+.table-panel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.table-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.table-panel-header h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.table-filter-select {
+  background: #151a28;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 8px 14px;
+  color: var(--text-main);
+  font-size: 0.82rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: var(--transition);
+  color-scheme: dark;
+}
+
+.table-filter-select:hover, .table-filter-select:focus {
+  border-color: var(--border-focus);
+}
+
+.table-filter-select option {
+  background-color: #151a28;
+  color: #f8fafc;
+  padding: 6px 10px;
+}
+
+.table-search-box {
+  width: 230px;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.84rem;
+}
+
+.styled-table th {
+  padding: 12px 14px;
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 0.74rem;
+  text-transform: none;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.styled-table td {
+  padding: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: middle;
+}
+
+.styled-table tr:hover td {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.merchant-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.merchant-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: #1b2130;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.merchant-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.merchant-name-text {
+  font-weight: 700;
+  color: #fff;
+}
+
+.merchant-desc-text {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.source-badge svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.source-ocr {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.source-manual {
+  background: rgba(100, 116, 139, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(100, 116, 139, 0.25);
+}
+
+.amount-value {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.action-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.action-icon-btn:hover {
+  color: var(--accent-red);
+  background: var(--accent-red-bg);
+}

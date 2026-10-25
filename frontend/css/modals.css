@@ -1,0 +1,396 @@
+/* ==========================================================================
+   Modals, Smart Uploader & Custom Category Select Components
+   ========================================================================== */
+
+/* ==========================================================================
+   Modal Popups
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 11, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: #111522;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  width: 90%;
+  max-width: 480px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  transform: translateY(20px);
+  transition: var(--transition);
+}
+
+.modal-overlay.active .modal-box {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.modal-close-btn {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  transform: rotate(90deg) scale(1.05);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.form-input,
+.form-select {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 0.86rem;
+  outline: none;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px var(--accent-purple-glow);
+}
+
+/* ==========================================================================
+   Smart Receipt Dropzone inside Unified Modal
+   ========================================================================== */
+.smart-receipt-uploader {
+  border: 1.5px dashed rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.05);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 6px;
+}
+
+.smart-receipt-uploader:hover {
+  border-color: var(--accent-purple);
+  background: rgba(168, 85, 247, 0.1);
+  transform: translateY(-1px);
+}
+
+.uploader-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--accent-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.uploader-icon-wrap svg {
+  width: 20px;
+  height: 20px;
+}
+
+.uploader-text {
+  flex: 1;
+}
+
+.uploader-title {
+  font-size: 0.84rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.uploader-title strong {
+  color: #c084fc;
+}
+
+.uploader-hint {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.upload-status-bar {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-status-bar.scanning {
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.upload-status-bar.success {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.upload-status-bar.error {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.modal-divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.73rem;
+  margin: 10px 0 12px;
+}
+
+.modal-divider-text::before,
+.modal-divider-text::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-divider-text:not(:empty)::before {
+  margin-right: 0.75em;
+}
+
+.modal-divider-text:not(:empty)::after {
+  margin-left: 0.75em;
+}
+
+/* Legacy Upload dropzone inside modal */
+.dropzone {
+  border: 2px dashed rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.04);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.dropzone:hover {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: var(--accent-purple);
+}
+
+.dropzone-icon {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.dropzone p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.dropzone span {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   Custom Category Select with Heroicons
+   ========================================================================== */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.custom-select-trigger:hover,
+.custom-select-wrapper.open .custom-select-trigger {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px var(--accent-purple-glow);
+}
+
+.custom-select-selected-val {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.custom-cat-icon-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.custom-cat-icon-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+.chevron-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--text-dim);
+  transition: transform 0.2s ease;
+}
+
+.custom-select-wrapper.open .chevron-icon {
+  transform: rotate(180deg);
+}
+
+.custom-select-options {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #111522;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  z-index: 150;
+  max-height: 260px;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px;
+}
+
+.custom-select-wrapper.open .custom-select-options {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.custom-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  color: #cbd5e1;
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.custom-select-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.custom-select-option.selected {
+  background: rgba(139, 92, 246, 0.15);
+  color: #c084fc;
+  font-weight: 700;
+}
+
+.custom-option-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-option-check {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--accent-purple);
+  display: none;
+}
+
+.custom-select-option.selected .custom-option-check {
+  display: inline-block;
+}

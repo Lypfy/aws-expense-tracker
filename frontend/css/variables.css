@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Design Tokens & Global Variables
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: dark;
+  --bg-app: #080a10;
+  --bg-sidebar: #0c0f17;
+  --bg-card: #121622;
+  --bg-card-hover: #171d2c;
+  --bg-input: #151a28;
+  
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-focus: rgba(139, 92, 246, 0.5);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --accent-purple: #8b5cf6;
+  --accent-purple-glow: rgba(139, 92, 246, 0.25);
+  --accent-purple-gradient: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+
+  --accent-green: #10b981;
+  --accent-green-bg: rgba(16, 185, 129, 0.12);
+
+  --accent-amber: #f59e0b;
+  --accent-amber-bg: rgba(245, 158, 11, 0.12);
+
+  --accent-red: #ef4444;
+  --accent-red-bg: rgba(239, 68, 68, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+select {
+  color-scheme: dark;
+}
+
+select option {
+  background-color: #121622;
+  color: #f8fafc;
+  padding: 6px 10px;
+}

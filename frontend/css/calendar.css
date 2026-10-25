@@ -1,0 +1,200 @@
+/* ==========================================================================
+   Calendar Date / Month Picker Component
+   ========================================================================== */
+
+.calendar-picker-wrapper {
+  position: relative;
+}
+
+.calendar-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #151a28;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 8px 14px;
+  color: var(--text-main);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.calendar-trigger-btn:hover,
+.calendar-picker-wrapper.open .calendar-trigger-btn {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px var(--accent-purple-glow);
+  color: #fff;
+}
+
+.calendar-chevron {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--text-dim);
+  transition: transform 0.2s ease;
+}
+
+.calendar-picker-wrapper.open .calendar-chevron {
+  transform: rotate(180deg);
+}
+
+/* Calendar Popover - Dark UI Calendar Dropdown */
+.calendar-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 290px;
+  background: #121622;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 20px rgba(139, 92, 246, 0.1);
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.calendar-picker-wrapper.open .calendar-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cal-current-month {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cal-nav-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cal-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 8px;
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  text-align: center;
+}
+
+.cal-day-cell {
+  width: 32px;
+  height: 32px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+.cal-day-cell:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.cal-day-cell.other-month {
+  color: #475569;
+  cursor: default;
+}
+
+.cal-day-cell.other-month:hover {
+  background: transparent;
+  color: #475569;
+}
+
+/* Selected Day (Cyan Blue circle) */
+.cal-day-cell.selected-day {
+  background: #38bdf8 !important;
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+/* Chấm nhỏ đánh dấu ngày có phát sinh giao dịch chi tiêu */
+.cal-day-cell.has-tx::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  box-shadow: 0 0 4px var(--accent-purple);
+}
+
+.cal-day-cell.selected-day.has-tx::after {
+  background: #0f172a;
+  box-shadow: none;
+}
+
+.calendar-footer {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.cal-btn-view-all {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  color: #c084fc;
+  border-radius: var(--radius-sm);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.cal-btn-view-all:hover {
+  background: rgba(139, 92, 246, 0.22);
+  color: #fff;
+  border-color: rgba(139, 92, 246, 0.5);
+}

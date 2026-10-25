@@ -1,0 +1,498 @@
+/* ==========================================================================
+   Dashboard Components: Metrics, Sparklines & Spending Trend Chart
+   ========================================================================== */
+
+/* ==========================================================================
+   Top Grid: 3 Sparkline Cards + 1 Featured Purple Card
+   ========================================================================== */
+.top-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 1.25fr;
+  gap: 18px;
+}
+
+.metric-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.metric-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  background-color: var(--bg-card-hover);
+}
+
+.metric-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cat-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.cat-label-title {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-weight: 600;
+  text-transform: none;
+}
+
+.cat-label-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.card-arrow-btn {
+  color: var(--text-dim);
+  transition: var(--transition);
+}
+
+.metric-card:hover .card-arrow-btn {
+  color: #fff;
+  transform: translate(2px, -2px);
+}
+
+.metric-amount-row {
+  margin-top: 16px;
+}
+
+.metric-label-small {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.metric-main-value {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 2px;
+}
+
+.metric-badge-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.badge-green {
+  color: var(--accent-green);
+  background: var(--accent-green-bg);
+}
+
+.badge-red {
+  color: var(--accent-red);
+  background: var(--accent-red-bg);
+}
+
+.sparkline-canvas {
+  width: 100%;
+  height: 56px;
+  margin-top: 6px;
+  cursor: default;
+}
+
+/* Featured Purple Card (Liquid Staking Style) */
+.featured-ocr-card {
+  background: linear-gradient(145deg, #1d1538 0%, #0e121d 100%);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px -10px var(--accent-purple-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-ocr-card::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ocr-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ocr-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.badge-new {
+  font-size: 0.65rem;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.ocr-card-body h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 14px;
+}
+
+.ocr-card-body p {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+.ocr-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.btn-upload-ocr {
+  width: 100%;
+  padding: 10px;
+  background: var(--accent-purple-gradient);
+  border: none;
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+  transition: var(--transition);
+}
+
+.btn-upload-ocr:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.btn-view-s3 {
+  width: 100%;
+  padding: 9px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-view-s3:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   Unified Spending & Trend Analytics Card (Gộp 2 thẻ làm 1)
+   ========================================================================== */
+.unified-spending-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.unified-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.unified-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-title-muted {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.huge-amount-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.huge-number {
+  font-size: 2.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.currency-badge {
+  font-size: 0.95rem;
+  color: var(--accent-purple);
+  font-weight: 700;
+}
+
+.unified-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chart-select-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-dropdown-select {
+  background: #151a28;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 5px 9px;
+  color: #cbd5e1;
+  font-size: 0.76rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: var(--transition);
+  color-scheme: dark;
+}
+
+.chart-dropdown-select:hover,
+.chart-dropdown-select:focus {
+  border-color: var(--border-focus);
+  color: #fff;
+}
+
+.chart-dropdown-select option {
+  background-color: #151a28;
+  color: #f8fafc;
+  padding: 6px 10px;
+}
+
+.chart-legend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #c084fc;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+}
+
+.legend-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a855f7;
+  box-shadow: 0 0 6px #a855f7;
+}
+
+.chart-multiseries-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.legend-series-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.legend-series-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.chart-canvas-wrapper {
+  width: 100%;
+  height: 125px;
+  position: relative;
+}
+
+.chart-canvas-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  cursor: default;
+}
+
+/* Dải 6 thông số tài chính hữu ích dưới chân thẻ */
+.unified-stats-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.substat-item span {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  display: block;
+}
+
+.substat-item strong {
+  font-size: 0.92rem;
+  color: var(--text-main);
+  margin-top: 4px;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .unified-stats-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .unified-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tooltip hiển thị dữ liệu chi tiết khi hover qua biểu đồ (snap theo ngày) */
+.chart-hover-tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 30;
+  background: rgba(18, 22, 34, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(139, 92, 246, 0.2);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  color: #f8fafc;
+  min-width: 140px;
+  max-width: 250px;
+  transition: opacity 0.12s ease;
+  transform: translate(-50%, -100%);
+  margin-top: -12px;
+}
+
+.chart-hover-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(18, 22, 34, 0.95) transparent transparent transparent;
+}
+
+.tooltip-header {
+  font-weight: 700;
+  color: #e2e8f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tooltip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.tooltip-row:last-child {
+  margin-bottom: 0;
+}
+
+.tooltip-cat-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a3b8;
+  font-size: 0.73rem;
+}
+
+.tooltip-cat-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tooltip-cat-val {
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.tooltip-total-row {
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+}
