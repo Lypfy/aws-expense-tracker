@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS Serverless Expense Tracker - Infrastructure as Code (Capstone Project - Cloud Computing)'
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: ExpenseTracker
+    Description: Project tag name
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues: [dev, prod]
+  LabRoleArn:
+    Type: String
+    Default: 'arn:aws:iam::2593-5119-2274:role/LabRole'
+    Description: Pre-configured IAM LabRole for AWS Academy Learner Lab
+
+Resources:
+  # 1. Cơ sở dữ liệu: Amazon DynamoDB Table
+  TransactionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Transactions-IaC-Test
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: transactionId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+        - AttributeName: transactionId
+          KeyType: RANGE
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: Owner
+          Value: NguyenThanhThang
+
+  # 2. REST API: Amazon API Gateway
+  ExpenseTrackerApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: expense-tracker-api-iac
+      Description: REST API for Serverless Expense Tracker (IaC Stack)
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: Owner
+          Value: NguyenThanhThang
+
+Outputs:
+  DynamoDBTableName:
+    Description: DynamoDB Table Name
+    Value: !Ref TransactionsTable
+  ApiGatewayRestApiId:
+    Description: API Gateway REST API ID
+    Value: !Ref ExpenseTrackerApi
