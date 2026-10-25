@@ -1,0 +1,54 @@
+
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: >
+  Data Lake resources for AWS Expense Tracker.
+  Includes Analytics S3 bucket and Glue database.
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: ExpenseTracker
+
+  OwnerName:
+    Type: String
+    Default: LeTrongNghia
+
+Resources:
+  AnalyticsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: expense-analytics-data-24110286
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      Tags:
+          - Key: Project
+            Value: !Ref ProjectName
+          - Key: Owner
+            Value: !Ref OwnerName
+
+  ExpenseAnalyticsDatabase:
+    Type: AWS::Glue::Database
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      DatabaseInput:
+        Name: expense_analytics_db
+        Description: >
+          Analytics database for receipt transactions
+          processed by AWS Expense Tracker.
+
+Outputs:
+  AnalyticsBucketName:
+    Description: Analytics S3 bucket name
+    Value: !Ref AnalyticsBucket
+
+  GlueDatabaseName:
+    Description: Glue Data Catalog database name
+    Value: !Ref ExpenseAnalyticsDatabase
