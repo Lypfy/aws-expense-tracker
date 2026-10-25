@@ -169,24 +169,34 @@ const ExpenseApi = {
     /**
      * Tải hóa đơn trực tiếp lên Amazon S3 Bucket để kích hoạt chuỗi Lambda OCR Textract (Cách 1)
      */
+    /**
+     * Tải hóa đơn lên S3 thông qua Pre-signed URL (Đã cập nhật)
+     */
     async uploadReceiptToS3(file, userId) {
-        // Định danh object key theo ngày giờ và tên file
-        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
         const cleanFileName = (file && file.name) ? file.name.replace(/[^a-zA-Z0-9._-]/g, "_") : "receipt.jpg";
-        const objectKey = `uploads/${userId}_${timestamp}_${cleanFileName}`;
-        const s3Url = `https://${CONFIG.S3_BUCKET}.s3.${CONFIG.AWS_REGION}.amazonaws.com/${objectKey}`;
+        const objectKey = `receipts/${userId}_${Date.now()}_${cleanFileName}`;
+        const fileType = file.type || "application/octet-stream";
 
-        // Gửi HTTP PUT trực tiếp lên S3 bucket
-        const res = await fetch(s3Url, {
+        // 1. Gọi backend API để xin Pre-signed URL
+        const authRes = await fetch(`${CONFIG.API_BASE_URL}/upload-url?fileName=${encodeURIComponent(objectKey)}&contentType=${encodeURIComponent(fileType)}`);
+
+        if (!authRes.ok) {
+            throw new Error(`Không thể lấy Pre-signed URL từ server (HTTP ${authRes.status})`);
+        }
+
+        const { uploadUrl } = await authRes.json();
+
+        // 2. Tải file lên S3 bằng URL đã được ký
+        const s3Res = await fetch(uploadUrl, {
             method: "PUT",
             headers: {
-                "Content-Type": file.type || "application/octet-stream"
+                "Content-Type": fileType
             },
             body: file
         });
 
-        if (!res.ok) {
-            throw new Error(`Tải lên S3 thất bại (HTTP ${res.status}: ${res.statusText})`);
+        if (!s3Res.ok) {
+            throw new Error(`Tải lên S3 thất bại (HTTP ${s3Res.status})`);
         }
 
         return {
