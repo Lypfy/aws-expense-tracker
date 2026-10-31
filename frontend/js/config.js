@@ -8,13 +8,6 @@ const CONFIG = {
     
     // Default User ID cho bài thực hành
     DEFAULT_USER_ID: "24110332",
-    
-    // Danh sách người dùng để chuyển đổi nhanh trên giao diện
-    USERS: [
-        { id: "24110332", name: "Nguyễn Thành Thắng (SV2)", role: "Backend & Database", avatar: "SV2" },
-        { id: "24110286", name: "Lê Trọng Nghĩa (SV1)", role: "OCR & Data Lake", avatar: "SV1" },
-        { id: "user_01", name: "Demo User 01", role: "Test Account", avatar: "DEMO" }
-    ],
 
     // S3 Bucket lưu hóa đơn đầu vào (SV1)
     S3_BUCKET: "expense-raw-receipts-24110286",

@@ -13,6 +13,9 @@
    ========================================================================== */
 .sidebar {
   width: 250px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
   background-color: var(--bg-sidebar);
   border-right: 1px solid var(--border-subtle);
   display: flex;
@@ -170,20 +173,27 @@
 /* Sidebar Footer Badge */
 .sidebar-footer {
   margin-top: auto;
-  padding: 14px;
-  background: linear-gradient(180deg, rgba(30, 21, 58, 0.4) 0%, rgba(18, 22, 34, 0.7) 100%);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 12px 14px;
+  background: linear-gradient(180deg, rgba(30, 21, 58, 0.5) 0%, rgba(18, 22, 34, 0.8) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   gap: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: var(--transition);
+}
+
+.sidebar-footer:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: linear-gradient(180deg, rgba(35, 25, 68, 0.6) 0%, rgba(22, 26, 40, 0.9) 100%);
 }
 
 .footer-badge-title {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #c4b5fd;
 }
@@ -194,11 +204,36 @@
   background-color: var(--accent-green);
   border-radius: 50%;
   box-shadow: 0 0 8px var(--accent-green);
+  flex-shrink: 0;
+}
+
+.status-dot.pulse {
+  animation: pulseGreen 2s infinite;
+}
+
+.status-dot.error {
+  background-color: var(--accent-amber);
+  box-shadow: 0 0 8px var(--accent-amber);
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 .footer-badge-desc {
   font-size: 0.72rem;
   color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* ==========================================================================

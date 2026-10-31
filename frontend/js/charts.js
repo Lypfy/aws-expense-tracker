@@ -116,10 +116,25 @@ const ChartService = {
             peakEl.textContent = peakDay > 0 ? `Ngày ${peakDay} (${(maxSingleVal / 1000).toFixed(0)}k)` : "Chưa có";
         }
 
+        // Cập nhật Ngân sách dự kiến & Tỷ lệ đã dùng
+        const monthlyBudget = parseFloat(localStorage.getItem("expense_monthly_budget")) || 5000000;
+        const budgetExpectedEl = document.getElementById("statBudgetExpected");
+        if (budgetExpectedEl) {
+            budgetExpectedEl.textContent = monthlyBudget.toLocaleString("vi-VN") + " ₫";
+        }
+
         const budgetRatioEl = document.getElementById("statBudgetRatio");
         if (budgetRatioEl) {
-            const ratio = ((displayTotal / 5000000) * 100).toFixed(1);
+            const ratio = ((displayTotal / monthlyBudget) * 100).toFixed(1);
             budgetRatioEl.textContent = ratio + "%";
+            const numRatio = parseFloat(ratio);
+            if (numRatio > 100) {
+                budgetRatioEl.style.color = "var(--accent-red, #f87171)";
+            } else if (numRatio > 80) {
+                budgetRatioEl.style.color = "var(--accent-amber, #fbbf24)";
+            } else {
+                budgetRatioEl.style.color = "var(--accent-green, #34d399)";
+            }
         }
 
         // Cập nhật thẻ Legend

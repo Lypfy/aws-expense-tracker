@@ -1,252 +1,503 @@
 <!doctype html>
 <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ thống quản lý chi tiêu cá nhân</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/table.css" />
+    <link rel="stylesheet" href="css/calendar.css" />
+    <link rel="stylesheet" href="css/modals.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238b5cf6'><path d='M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z'/></svg>"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hệ thống quản lý chi tiêu cá nhân</title>
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/dashboard.css" />
-  <link rel="stylesheet" href="css/table.css" />
-  <link rel="stylesheet" href="css/calendar.css" />
-  <link rel="stylesheet" href="css/modals.css" />
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238b5cf6'><path d='M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z'/></svg>" />
-</head>
-
-<body>
-  <div class="app-container">
-    <!-- ==================== SIDEBAR ==================== -->
-    <aside class="sidebar">
-      <!-- Logo -->
-      <div class="logo-area">
-        <div class="logo-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-            style="width: 18px; height: 18px">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-          </svg>
-        </div>
-        <div class="logo-text">
-          <h2>ExpenseTracker</h2>
-          <span>Quản lý chi tiêu</span>
-        </div>
-      </div>
-
-      <!-- Navigation Menu -->
-      <nav class="nav-menu">
-        <a class="nav-item active" id="navItemOverview" href="#overview" data-view="viewOverview">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
-          </svg>
-          <span>Tổng quan</span>
-        </a>
-        <a class="nav-item" id="navItemHistory" href="#history" data-view="viewHistory">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6H2.25m0 0v8.25m0-8.25a60.07 60.07 0 0 1 15.797-2.101c.727-.198 1.453.342 1.453 1.096V5.25M3.75 4.5v.75A.75.75 0 0 0 4.5 6h15a.75.75 0 0 0 .75-.75V4.5m-16.5 0A2.25 2.25 0 0 1 3 2.25h18a2.25 2.25 0 0 1 2.25 2.25m-19.5 0v12A2.25 2.25 0 0 0 4.5 21h15a2.25 2.25 0 0 0 2.25-2.25V6.75M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-          </svg>
-          <span>Lịch sử chi tiêu</span>
-        </a>
-      </nav>
-    </aside>
-
-    <!-- ==================== MAIN CONTENT ==================== -->
-    <main class="main-wrapper">
-      <!-- Dashboard Content Body -->
-      <div class="dashboard-content">
-        <!-- ==================== VIEW 1: TỔNG QUAN & PHÂN TÍCH ==================== -->
-        <div class="view-section" id="viewOverview">
-          <!-- Section Headline Trang Tổng quan -->
-          <div class="section-headline">
-            <div class="section-title-group">
-              <h1>Tổng quan chi tiêu cá nhân</h1>
-              <div class="section-subtitle">
-                <span>Theo dõi và phân tích chi tiêu thông minh</span>
-              </div>
-            </div>
-
-            <!-- Bộ lọc Tháng/Năm ở góc trên bên phải trang Tổng quan -->
-            <div class="page-header-controls">
-              <div class="time-select-group">
-                <select id="overviewMonthSelect" title="Chọn tháng">
-                  <option value="01">Tháng 1</option>
-                  <option value="02">Tháng 2</option>
-                  <option value="03">Tháng 3</option>
-                  <option value="04">Tháng 4</option>
-                  <option value="05">Tháng 5</option>
-                  <option value="06">Tháng 6</option>
-                  <option value="07">Tháng 7</option>
-                  <option value="08">Tháng 8</option>
-                  <option value="09">Tháng 9</option>
-                  <option value="10" selected>Tháng 10</option>
-                  <option value="11">Tháng 11</option>
-                  <option value="12">Tháng 12</option>
-                </select>
-                <select id="overviewYearSelect" title="Chọn năm">
-                  <option value="2024">2024</option>
-                  <option value="2025">2025</option>
-                  <option value="2026" selected>2026</option>
-                  <option value="2027">2027</option>
-                </select>
-              </div>
-            </div>
+  <body>
+    <div class="app-container">
+      <!-- ==================== SIDEBAR ==================== -->
+      <aside class="sidebar">
+        <!-- Logo -->
+        <div class="logo-area">
+          <div class="logo-badge">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              style="width: 18px; height: 18px"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
+              />
+            </svg>
           </div>
+          <div class="logo-text">
+            <h2>ExpenseTracker</h2>
+            <span>Quản lý chi tiêu</span>
+          </div>
+        </div>
 
-          <!-- Hàng 1: 3 Thẻ Top Danh mục phổ biến nhất + 1 Thẻ Thêm chi tiêu / Quét OCR -->
-          <section class="top-metrics-grid">
-            <!-- Card 1: Top 1 Danh mục -->
-            <div class="metric-card">
-              <div class="metric-card-top">
-                <div class="cat-badge-wrap">
-                  <div class="cat-icon-box" id="card1IconBox" style="
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+          <a
+            class="nav-item active"
+            id="navItemOverview"
+            href="#overview"
+            data-view="viewOverview"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
+              />
+            </svg>
+            <span>Tổng quan</span>
+          </a>
+          <a
+            class="nav-item"
+            id="navItemHistory"
+            href="#history"
+            data-view="viewHistory"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6H2.25m0 0v8.25m0-8.25a60.07 60.07 0 0 1 15.797-2.101c.727-.198 1.453.342 1.453 1.096V5.25M3.75 4.5v.75A.75.75 0 0 0 4.5 6h15a.75.75 0 0 0 .75-.75V4.5m-16.5 0A2.25 2.25 0 0 1 3 2.25h18a2.25 2.25 0 0 1 2.25 2.25m-19.5 0v12A2.25 2.25 0 0 0 4.5 21h15a2.25 2.25 0 0 0 2.25-2.25V6.75M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+              />
+            </svg>
+            <span>Lịch sử chi tiêu</span>
+          </a>
+          <a
+            class="nav-item"
+            id="navItemSettings"
+            href="#settings"
+            data-view="viewSettings"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              />
+            </svg>
+            <span>Cài đặt</span>
+          </a>
+        </nav>
+
+        <!-- Cloud API Connection Status (Dưới cùng Sidebar) -->
+        <div class="sidebar-footer" id="sidebarCloudStatus">
+          <div class="footer-badge-title">
+            <span class="status-dot pulse" id="apiStatusDot"></span>
+            <span id="apiStatusText" style="color: #34d399"
+              >API: Connected</span
+            >
+          </div>
+          <div class="footer-badge-desc" id="apiStatusDetails">
+            <span>AWS us-east-1 &bull; Stage dev</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ==================== MAIN CONTENT ==================== -->
+      <main class="main-wrapper">
+        <!-- Dashboard Content Body -->
+        <div class="dashboard-content">
+          <!-- ==================== VIEW 1: TỔNG QUAN & PHÂN TÍCH ==================== -->
+          <div class="view-section" id="viewOverview">
+            <!-- Section Headline Trang Tổng quan -->
+            <div class="section-headline">
+              <div class="section-title-group">
+                <h1>Tổng quan chi tiêu cá nhân</h1>
+                <div class="section-subtitle">
+                  <span>Theo dõi và phân tích chi tiêu thông minh</span>
+                </div>
+              </div>
+
+              <!-- Bộ lọc Tháng/Năm ở góc trên bên phải trang Tổng quan -->
+              <div class="page-header-controls">
+                <div class="time-select-group">
+                  <select id="overviewMonthSelect" title="Chọn tháng">
+                    <option value="01">Tháng 1</option>
+                    <option value="02">Tháng 2</option>
+                    <option value="03">Tháng 3</option>
+                    <option value="04">Tháng 4</option>
+                    <option value="05">Tháng 5</option>
+                    <option value="06">Tháng 6</option>
+                    <option value="07">Tháng 7</option>
+                    <option value="08">Tháng 8</option>
+                    <option value="09">Tháng 9</option>
+                    <option value="10" selected>Tháng 10</option>
+                    <option value="11">Tháng 11</option>
+                    <option value="12">Tháng 12</option>
+                  </select>
+                  <select id="overviewYearSelect" title="Chọn năm">
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026" selected>2026</option>
+                    <option value="2027">2027</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hàng 1: 3 Thẻ Top Danh mục phổ biến nhất + 1 Thẻ Thêm chi tiêu / Quét OCR -->
+            <section class="top-metrics-grid">
+              <!-- Card 1: Top 1 Danh mục -->
+              <div class="metric-card">
+                <div class="metric-card-top">
+                  <div class="cat-badge-wrap">
+                    <div
+                      class="cat-icon-box"
+                      id="card1IconBox"
+                      style="
                         background: rgba(139, 92, 246, 0.15);
                         color: #a78bfa;
-                      ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
-                      stroke="currentColor" style="width: 20px; height: 20px">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.125-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="cat-label-title">Phổ biến #1</div>
-                    <div class="cat-label-name" id="card1Name">
-                      Food & Dining
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.8"
+                        stroke="currentColor"
+                        style="width: 20px; height: 20px"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.125-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="cat-label-title">Phổ biến #1</div>
+                      <div class="cat-label-name" id="card1Name">
+                        Food & Dining
+                      </div>
                     </div>
                   </div>
+                  <span class="card-arrow-btn">↗</span>
                 </div>
-                <span class="card-arrow-btn">↗</span>
+
+                <div class="metric-amount-row">
+                  <div class="metric-label-small">Tổng chi tiêu</div>
+                  <div class="metric-main-value" id="card1Value">0 ₫</div>
+                  <span class="metric-badge-change badge-green" id="card1Badge"
+                    >0%</span
+                  >
+                </div>
+
+                <canvas class="sparkline-canvas" id="canvasSpark1"></canvas>
               </div>
 
-              <div class="metric-amount-row">
-                <div class="metric-label-small">Tổng chi tiêu</div>
-                <div class="metric-main-value" id="card1Value">0 ₫</div>
-                <span class="metric-badge-change badge-green" id="card1Badge">0%</span>
-              </div>
-
-              <canvas class="sparkline-canvas" id="canvasSpark1"></canvas>
-            </div>
-
-            <!-- Card 2: Top 2 Danh mục -->
-            <div class="metric-card">
-              <div class="metric-card-top">
-                <div class="cat-badge-wrap">
-                  <div class="cat-icon-box" id="card2IconBox" style="
+              <!-- Card 2: Top 2 Danh mục -->
+              <div class="metric-card">
+                <div class="metric-card-top">
+                  <div class="cat-badge-wrap">
+                    <div
+                      class="cat-icon-box"
+                      id="card2IconBox"
+                      style="
                         background: rgba(245, 158, 11, 0.15);
                         color: #fbbf24;
-                      ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
-                      stroke="currentColor" style="width: 20px; height: 20px">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="cat-label-title">Phổ biến #2</div>
-                    <div class="cat-label-name" id="card2Name">Groceries</div>
-                  </div>
-                </div>
-                <span class="card-arrow-btn">↗</span>
-              </div>
-
-              <div class="metric-amount-row">
-                <div class="metric-label-small">Tổng chi tiêu</div>
-                <div class="metric-main-value" id="card2Value">0 ₫</div>
-                <span class="metric-badge-change badge-green" id="card2Badge">0%</span>
-              </div>
-
-              <canvas class="sparkline-canvas" id="canvasSpark2"></canvas>
-            </div>
-
-            <!-- Card 3: Top 3 Danh mục -->
-            <div class="metric-card">
-              <div class="metric-card-top">
-                <div class="cat-badge-wrap">
-                  <div class="cat-icon-box" id="card3IconBox" style="
-                        background: rgba(16, 185, 129, 0.15);
-                        color: #34d399;
-                      ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
-                      stroke="currentColor" style="width: 20px; height: 20px">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="cat-label-title">Phổ biến #3</div>
-                    <div class="cat-label-name" id="card3Name">
-                      Transportation
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.8"
+                        stroke="currentColor"
+                        style="width: 20px; height: 20px"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="cat-label-title">Phổ biến #2</div>
+                      <div class="cat-label-name" id="card2Name">Groceries</div>
                     </div>
                   </div>
+                  <span class="card-arrow-btn">↗</span>
                 </div>
-                <span class="card-arrow-btn">↗</span>
-              </div>
 
-              <div class="metric-amount-row">
-                <div class="metric-label-small">Tổng chi tiêu</div>
-                <div class="metric-main-value" id="card3Value">0 ₫</div>
-                <span class="metric-badge-change badge-green" id="card3Badge">0%</span>
-              </div>
-
-              <canvas class="sparkline-canvas" id="canvasSpark3"></canvas>
-            </div>
-
-            <!-- Card 4: Thêm Chi Tiêu Nhanh (Gộp quét hóa đơn & nhập tay) -->
-            <div class="featured-ocr-card">
-              <div class="ocr-card-header">
-                <div class="ocr-brand">
-                  <span>Thêm chi tiêu nhanh</span>
+                <div class="metric-amount-row">
+                  <div class="metric-label-small">Tổng chi tiêu</div>
+                  <div class="metric-main-value" id="card2Value">0 ₫</div>
+                  <span class="metric-badge-change badge-green" id="card2Badge"
+                    >0%</span
+                  >
                 </div>
-                <span class="badge-new">Tự động</span>
+
+                <canvas class="sparkline-canvas" id="canvasSpark2"></canvas>
               </div>
 
-              <div class="ocr-card-body">
-                <h3>Ghi nhận chi tiêu</h3>
-                <p>
-                  Tải ảnh hóa đơn để tự động quét hoặc nhập tay trực tiếp chỉ
-                  trong vài giây.
-                </p>
+              <!-- Card 3: Top 3 Danh mục -->
+              <div class="metric-card">
+                <div class="metric-card-top">
+                  <div class="cat-badge-wrap">
+                    <div
+                      class="cat-icon-box"
+                      id="card3IconBox"
+                      style="
+                        background: rgba(16, 185, 129, 0.15);
+                        color: #34d399;
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.8"
+                        stroke="currentColor"
+                        style="width: 20px; height: 20px"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="cat-label-title">Phổ biến #3</div>
+                      <div class="cat-label-name" id="card3Name">
+                        Transportation
+                      </div>
+                    </div>
+                  </div>
+                  <span class="card-arrow-btn">↗</span>
+                </div>
+
+                <div class="metric-amount-row">
+                  <div class="metric-label-small">Tổng chi tiêu</div>
+                  <div class="metric-main-value" id="card3Value">0 ₫</div>
+                  <span class="metric-badge-change badge-green" id="card3Badge"
+                    >0%</span
+                  >
+                </div>
+
+                <canvas class="sparkline-canvas" id="canvasSpark3"></canvas>
               </div>
 
-              <div class="ocr-card-actions">
-                <button class="btn-upload-ocr" id="btnUploadOcr">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" style="width: 16px; height: 16px">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
-                  <span>Thêm chi tiêu mới</span>
-                </button>
-              </div>
-            </div>
-          </section>
+              <!-- Card 4: Thêm Chi Tiêu Nhanh (Gộp quét hóa đơn & nhập tay) -->
+              <div class="featured-ocr-card">
+                <div class="ocr-card-header">
+                  <div class="ocr-brand">
+                    <span>Thêm chi tiêu nhanh</span>
+                  </div>
+                  <span class="badge-new">Tự động</span>
+                </div>
 
-          <!-- Hàng 2: Thẻ Biểu đồ đa đường thống kê chi tiêu theo từng loại danh mục -->
-          <section class="unified-spending-card">
-            <div class="unified-card-header">
-              <div class="unified-header-left">
-                <span class="card-title-muted" id="chartDisplayTitle">Tổng chi tiêu tháng</span>
-                <div class="huge-amount-row">
-                  <div class="huge-number" id="hugeMonthAmount">0</div>
-                  <span class="currency-badge">VND ₫</span>
+                <div class="ocr-card-body">
+                  <h3>Ghi nhận chi tiêu</h3>
+                  <p>
+                    Tải ảnh hóa đơn để tự động quét hoặc nhập tay trực tiếp chỉ
+                    trong vài giây.
+                  </p>
+                </div>
+
+                <div class="ocr-card-actions">
+                  <button class="btn-upload-ocr" id="btnUploadOcr">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      style="width: 16px; height: 16px"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
+                    <span>Thêm chi tiêu mới</span>
+                  </button>
                 </div>
               </div>
+            </section>
 
-              <div class="unified-header-controls">
-                <!-- Bộ lọc Dropdown chọn xem Riêng từng loại hoặc Tất cả danh mục (Đa đường) -->
-                <div class="chart-select-group">
-                  <label style="
+            <!-- Hàng 2: Thẻ Biểu đồ đa đường thống kê chi tiêu theo từng loại danh mục -->
+            <section class="unified-spending-card">
+              <div class="unified-card-header">
+                <div class="unified-header-left">
+                  <span class="card-title-muted" id="chartDisplayTitle"
+                    >Tổng chi tiêu tháng</span
+                  >
+                  <div class="huge-amount-row">
+                    <div class="huge-number" id="hugeMonthAmount">0</div>
+                    <span class="currency-badge">VND ₫</span>
+                  </div>
+                </div>
+
+                <div class="unified-header-controls">
+                  <!-- Bộ lọc Dropdown chọn xem Riêng từng loại hoặc Tất cả danh mục (Đa đường) -->
+                  <div class="chart-select-group">
+                    <label
+                      style="
                         font-size: 0.76rem;
                         color: var(--text-dim);
                         font-weight: 600;
-                      ">Xem theo loại:</label>
-                  <select class="chart-dropdown-select" id="chartCategorySelect"
-                    title="Chọn loại chi tiêu để xem biểu đồ">
+                      "
+                      >Xem theo loại:</label
+                    >
+                    <select
+                      class="chart-dropdown-select"
+                      id="chartCategorySelect"
+                      title="Chọn loại chi tiêu để xem biểu đồ"
+                    >
+                      <option value="ALL">All Categories</option>
+                      <option value="Food & Dining">Food & Dining</option>
+                      <option value="Groceries">Groceries</option>
+                      <option value="Transportation">Transportation</option>
+                      <option value="Healthcare">Healthcare</option>
+                      <option value="Shopping">Shopping</option>
+                      <option value="Utilities">Utilities</option>
+                      <option value="General">General</option>
+                    </select>
+                  </div>
+
+                  <!-- Legend các màu tương ứng -->
+                  <div
+                    class="chart-multiseries-legend"
+                    id="chartLegendContainer"
+                  >
+                    <span class="chart-legend-badge"
+                      ><span class="legend-dot"></span> Đa đường theo danh
+                      mục</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Canvas biểu đồ xu hướng đa đường -->
+              <div class="chart-canvas-wrapper" style="height: 145px">
+                <canvas id="monthlyTrendChart"></canvas>
+                <div
+                  id="chartHoverTooltip"
+                  class="chart-hover-tooltip"
+                  style="display: none"
+                ></div>
+              </div>
+
+              <!-- Dải 6 thông số tài chính hữu ích -->
+              <div class="unified-stats-row">
+                <div class="substat-item">
+                  <span>Ngân sách dự kiến</span>
+                  <strong id="statBudgetExpected">5,000,000 ₫</strong>
+                </div>
+                <div class="substat-item">
+                  <span>Tỷ lệ đã dùng</span>
+                  <strong
+                    style="color: var(--accent-green)"
+                    id="statBudgetRatio"
+                    >0.0%</strong
+                  >
+                </div>
+                <div class="substat-item">
+                  <span>Trung bình ngày</span>
+                  <strong id="avgDailySpend">0 ₫</strong>
+                </div>
+                <div class="substat-item">
+                  <span>Chi cao nhất</span>
+                  <strong id="peakSpendDay">Chưa có</strong>
+                </div>
+                <div class="substat-item">
+                  <span>Tổng giao dịch</span>
+                  <strong id="statTotalCount">0 giao dịch</strong>
+                </div>
+                <div class="substat-item">
+                  <span>Hóa đơn tự động</span>
+                  <strong id="statOcrCount" style="color: #c084fc"
+                    >0 hóa đơn</strong
+                  >
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- ==================== VIEW 2: LỊCH SỬ CHI TIÊU ==================== -->
+          <div class="view-section hidden" id="viewHistory">
+            <!-- Section Headline & Toàn bộ Toolbar đưa lên đầu trang Lịch sử -->
+            <div
+              class="section-headline"
+              style="align-items: flex-start; gap: 16px; flex-wrap: wrap"
+            >
+              <div class="section-title-group">
+                <h1>Lịch sử chi tiêu</h1>
+                <div class="section-subtitle">
+                  <span id="historySummaryLabel"
+                    >Đang tải danh sách giao dịch...</span
+                  >
+                </div>
+              </div>
+
+              <!-- Dải công cụ Toolbar đưa toàn bộ lên đầu trang Lịch sử -->
+              <div class="history-toolbar-wrap">
+                <!-- Bộ lọc theo thể loại ở đầu trang Lịch sử -->
+                <div class="category-filter-pill">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      color: var(--accent-purple);
+                    "
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 3c2.755 0 5.455.232 8.083.678.539.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.378-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z"
+                    />
+                  </svg>
+                  <select
+                    id="historyCategorySelect"
+                    class="category-filter-select"
+                    title="Lọc theo thể loại chi tiêu"
+                  >
                     <option value="ALL">All Categories</option>
                     <option value="Food & Dining">Food & Dining</option>
                     <option value="Groceries">Groceries</option>
@@ -258,291 +509,586 @@
                   </select>
                 </div>
 
-                <!-- Legend các màu tương ứng -->
-                <div class="chart-multiseries-legend" id="chartLegendContainer">
-                  <span class="chart-legend-badge"><span class="legend-dot"></span> Đa đường theo danh
-                    mục</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Canvas biểu đồ xu hướng đa đường -->
-            <div class="chart-canvas-wrapper" style="height: 145px">
-              <canvas id="monthlyTrendChart"></canvas>
-              <div id="chartHoverTooltip" class="chart-hover-tooltip" style="display: none"></div>
-            </div>
-
-            <!-- Dải 6 thông số tài chính hữu ích -->
-            <div class="unified-stats-row">
-              <div class="substat-item">
-                <span>Ngân sách dự kiến</span>
-                <strong>5,000,000 ₫</strong>
-              </div>
-              <div class="substat-item">
-                <span>Tỷ lệ đã dùng</span>
-                <strong style="color: var(--accent-green)" id="statBudgetRatio">0.0%</strong>
-              </div>
-              <div class="substat-item">
-                <span>Trung bình ngày</span>
-                <strong id="avgDailySpend">0 ₫</strong>
-              </div>
-              <div class="substat-item">
-                <span>Chi cao nhất</span>
-                <strong id="peakSpendDay">Chưa có</strong>
-              </div>
-              <div class="substat-item">
-                <span>Tổng giao dịch</span>
-                <strong id="statTotalCount">0 giao dịch</strong>
-              </div>
-              <div class="substat-item">
-                <span>Hóa đơn tự động</span>
-                <strong id="statOcrCount" style="color: #c084fc">0 hóa đơn</strong>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- ==================== VIEW 2: LỊCH SỬ CHI TIÊU ==================== -->
-        <div class="view-section hidden" id="viewHistory">
-          <!-- Section Headline & Toàn bộ Toolbar đưa lên đầu trang Lịch sử -->
-          <div class="section-headline" style="align-items: flex-start; gap: 16px; flex-wrap: wrap">
-            <div class="section-title-group">
-              <h1>Lịch sử chi tiêu</h1>
-              <div class="section-subtitle">
-                <span id="historySummaryLabel">Đang tải danh sách giao dịch...</span>
-              </div>
-            </div>
-
-            <!-- Dải công cụ Toolbar đưa toàn bộ lên đầu trang Lịch sử -->
-            <div class="history-toolbar-wrap">
-              <!-- Bộ lọc theo thể loại ở đầu trang Lịch sử -->
-              <div class="category-filter-pill">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
-                  stroke="currentColor" style="
-                      width: 14px;
-                      height: 14px;
-                      color: var(--accent-purple);
-                    ">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 3c2.755 0 5.455.232 8.083.678.539.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.378-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
-                </svg>
-                <select id="historyCategorySelect" class="category-filter-select" title="Lọc theo thể loại chi tiêu">
-                  <option value="ALL">All Categories</option>
-                  <option value="Food & Dining">Food & Dining</option>
-                  <option value="Groceries">Groceries</option>
-                  <option value="Transportation">Transportation</option>
-                  <option value="Healthcare">Healthcare</option>
-                  <option value="Shopping">Shopping</option>
-                  <option value="Utilities">Utilities</option>
-                  <option value="General">General</option>
-                </select>
-              </div>
-
-              <!-- Bộ chọn ngày / tháng kiểu Lịch (Windows Calendar Date Picker) -->
-              <div class="calendar-picker-wrapper" id="calendarPickerDropdown">
-                <button type="button" class="calendar-trigger-btn" id="calendarTriggerBtn">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
-                    stroke="currentColor" style="
+                <!-- Bộ chọn ngày / tháng kiểu Lịch (Windows Calendar Date Picker) -->
+                <div
+                  class="calendar-picker-wrapper"
+                  id="calendarPickerDropdown"
+                >
+                  <button
+                    type="button"
+                    class="calendar-trigger-btn"
+                    id="calendarTriggerBtn"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.8"
+                      stroke="currentColor"
+                      style="
                         width: 15px;
                         height: 15px;
                         color: var(--accent-purple);
-                      ">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 9v7.5" />
+                      "
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 9v7.5"
+                      />
+                    </svg>
+                    <span id="calendarSelectedLabel"
+                      >Tháng 10/2026 (Cả tháng)</span
+                    >
+                    <svg
+                      class="calendar-chevron"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                      />
+                    </svg>
+                  </button>
+
+                  <!-- Popover Lịch chuẩn như ảnh Windows Calendar -->
+                  <div class="calendar-popover" id="calendarPopover">
+                    <div class="calendar-header">
+                      <button
+                        type="button"
+                        class="cal-nav-btn"
+                        id="calPrevMonthBtn"
+                        title="Tháng trước"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          style="width: 14px; height: 14px"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15.75 19.5 8.25 12l7.5-7.5"
+                          />
+                        </svg>
+                      </button>
+                      <div class="cal-current-month" id="calCurrentMonthLabel">
+                        Tháng 10, 2026
+                      </div>
+                      <button
+                        type="button"
+                        class="cal-nav-btn"
+                        id="calNextMonthBtn"
+                        title="Tháng sau"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          style="width: 14px; height: 14px"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="calendar-weekdays">
+                      <span>Su</span><span>Mo</span><span>Tu</span
+                      ><span>We</span><span>Th</span><span>Fr</span
+                      ><span>Sa</span>
+                    </div>
+
+                    <div class="calendar-days-grid" id="calendarDaysGrid">
+                      <!-- Rendered dynamically by JS -->
+                    </div>
+
+                    <div class="calendar-footer">
+                      <button
+                        type="button"
+                        class="cal-btn-view-all"
+                        id="btnCalViewAll"
+                      >
+                        Xem tất cả ngày trong tháng
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dropdown bộ lọc nguồn -->
+                <select class="table-filter-select" id="filterSourceSelect">
+                  <option value="all">Tất cả chi tiêu</option>
+                  <option value="ocr">Đã quét OCR</option>
+                  <option value="manual">Nhập tay</option>
+                </select>
+
+                <!-- Ô tìm kiếm -->
+                <div class="search-box table-search-box">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    style="width: 15px; height: 15px"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
                   </svg>
-                  <span id="calendarSelectedLabel">Tháng 10/2026 (Cả tháng)</span>
-                  <svg class="calendar-chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  <input
+                    type="text"
+                    id="searchTransactionsInput"
+                    placeholder="Tìm giao dịch, cửa hàng..."
+                  />
+                </div>
+
+                <!-- Nút làm mới icon-only -->
+                <button
+                  class="btn-icon"
+                  id="btnRefreshTable"
+                  title="Làm mới bảng"
+                  onclick="loadTransactions()"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    style="width: 16px; height: 16px"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+                    />
                   </svg>
                 </button>
+              </div>
+            </div>
 
-                <!-- Popover Lịch chuẩn như ảnh Windows Calendar -->
-                <div class="calendar-popover" id="calendarPopover">
-                  <div class="calendar-header">
-                    <button type="button" class="cal-nav-btn" id="calPrevMonthBtn" title="Tháng trước">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                        stroke="currentColor" style="width: 14px; height: 14px">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                      </svg>
-                    </button>
-                    <div class="cal-current-month" id="calCurrentMonthLabel">
-                      Tháng 10, 2026
+            <!-- Bảng danh sách giao dịch full-width -->
+            <section class="table-panel" id="transactions-section">
+              <div class="table-wrap">
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 130px">Thời gian</th>
+                      <th>Cửa hàng / người nhận</th>
+                      <th style="width: 180px">Danh mục</th>
+                      <th style="width: 150px">Nguồn dữ liệu</th>
+                      <th style="width: 160px">Số tiền</th>
+                      <th style="width: 60px; text-align: right">Hành động</th>
+                    </tr>
+                  </thead>
+                  <tbody id="transactionsTableBody">
+                    <!-- Populated by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <!-- ==================== VIEW 3: CÀI ĐẶT HỆ THỐNG ==================== -->
+          <div class="view-section hidden" id="viewSettings">
+            <!-- Section Headline Trang Cài đặt -->
+            <div class="section-headline">
+              <div class="section-title-group">
+                <h1>Cài đặt</h1>
+                <div class="section-subtitle">
+                  <span
+                    >Tùy chỉnh hạn mức ngân sách và định danh tài khoản
+                    AWS</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Grid các thẻ cài đặt -->
+            <div class="settings-grid">
+              <!-- Card 1: Tùy chỉnh Ngân sách tháng -->
+              <div class="settings-card">
+                <div class="settings-card-header">
+                  <div class="settings-icon-box budget-color">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.8"
+                      stroke="currentColor"
+                      style="width: 22px; height: 22px"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6H2.25m0 0v8.25m0-8.25a60.07 60.07 0 0 1 15.797-2.101c.727-.198 1.453.342 1.453 1.096V5.25M3.75 4.5v.75A.75.75 0 0 0 4.5 6h15a.75.75 0 0 0 .75-.75V4.5m-16.5 0A2.25 2.25 0 0 1 3 2.25h18a2.25 2.25 0 0 1 2.25 2.25m-19.5 0v12A2.25 2.25 0 0 0 4.5 21h15a2.25 2.25 0 0 0 2.25-2.25V6.75"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>Ngân sách hàng tháng</h3>
+                    <p>Ngân sách chi tiêu dự kiến</p>
+                  </div>
+                </div>
+                <div class="settings-card-body">
+                  <div class="settings-form-group">
+                    <label for="settingMonthlyBudget">Ngân sách (VNĐ)</label>
+                    <div class="input-with-affix">
+                      <input
+                        type="number"
+                        id="settingMonthlyBudget"
+                        class="form-input"
+                        min="100000"
+                        step="100000"
+                        placeholder="5000000"
+                      />
+                      <span class="input-affix">₫</span>
                     </div>
-                    <button type="button" class="cal-nav-btn" id="calNextMonthBtn" title="Tháng sau">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                        stroke="currentColor" style="width: 14px; height: 14px">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                      </svg>
+                    <span class="settings-hint">
+                      Lưu trực tiếp vào trình duyệt (localStorage). Thẻ Ngân
+                      sách ngoài trang Tổng quan sẽ lập tức tính lại tỷ lệ phần
+                      trăm tương ứng.
+                    </span>
+                  </div>
+                  <div class="settings-card-actions">
+                    <button
+                      type="button"
+                      class="action-btn btn-primary"
+                      id="btnSaveBudget"
+                    >
+                      Lưu ngân sách
                     </button>
-                  </div>
-
-                  <div class="calendar-weekdays">
-                    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-                  </div>
-
-                  <div class="calendar-days-grid" id="calendarDaysGrid">
-                    <!-- Rendered dynamically by JS -->
-                  </div>
-
-                  <div class="calendar-footer">
-                    <button type="button" class="cal-btn-view-all" id="btnCalViewAll">
-                      Xem tất cả ngày trong tháng
-                    </button>
+                    <span
+                      class="settings-feedback"
+                      id="budgetSaveFeedback"
+                    ></span>
                   </div>
                 </div>
               </div>
 
-              <!-- Dropdown bộ lọc nguồn -->
-              <select class="table-filter-select" id="filterSourceSelect">
-                <option value="all">Tất cả chi tiêu</option>
-                <option value="ocr">Đã quét OCR</option>
-                <option value="manual">Nhập tay</option>
-              </select>
-
-              <!-- Ô tìm kiếm -->
-              <div class="search-box table-search-box">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
-                  stroke="currentColor" style="width: 15px; height: 15px">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                </svg>
-                <input type="text" id="searchTransactionsInput" placeholder="Tìm giao dịch, cửa hàng..." />
+              <!-- Card 2: Định danh Người dùng AWS (Partition Key) -->
+              <div class="settings-card">
+                <div class="settings-card-header">
+                  <div class="settings-icon-box user-color">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.8"
+                      stroke="currentColor"
+                      style="width: 22px; height: 22px"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>Định danh người dùng AWS</h3>
+                    <p>
+                      Partition Key DynamoDB dùng lọc chi tiêu của từng tài
+                      khoản
+                    </p>
+                  </div>
+                </div>
+                <div class="settings-card-body">
+                  <div class="settings-form-group">
+                    <label for="settingUserId">Mã User ID</label>
+                    <input
+                      type="text"
+                      id="settingUserId"
+                      class="form-input"
+                      placeholder="24110332"
+                    />
+                    <span class="settings-hint">
+                      Mỗi khi thay đổi mã, hệ thống sẽ gọi API Gateway truy vấn
+                      đúng Partition Key tương ứng trong DynamoDB nhằm chứng
+                      minh cơ chế Multi-tenant.
+                    </span>
+                  </div>
+                  <div class="quick-user-chips">
+                    <span class="chip-label">Chọn nhanh:</span>
+                    <button
+                      type="button"
+                      class="user-chip-btn"
+                      data-uid="24110332"
+                    >
+                      24110332 (SV2 Thắng)
+                    </button>
+                    <button
+                      type="button"
+                      class="user-chip-btn"
+                      data-uid="24110286"
+                    >
+                      24110286 (SV1 Nghĩa)
+                    </button>
+                  </div>
+                  <div class="settings-card-actions">
+                    <button
+                      type="button"
+                      class="action-btn btn-primary"
+                      id="btnSaveUserId"
+                    >
+                      Áp dụng
+                    </button>
+                    <span
+                      class="settings-feedback"
+                      id="userSaveFeedback"
+                    ></span>
+                  </div>
+                </div>
               </div>
 
-              <!-- Nút làm mới icon-only -->
-              <button class="btn-icon" id="btnRefreshTable" title="Làm mới bảng" onclick="loadTransactions()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
-                  stroke="currentColor" style="width: 16px; height: 16px">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-                </svg>
-              </button>
+              <!-- Card 3: Thông tin đám mây AWS Serverless -->
+              <div class="settings-card">
+                <div class="settings-card-header">
+                  <div class="settings-icon-box cloud-color">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.8"
+                      stroke="currentColor"
+                      style="width: 22px; height: 22px"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>Thông tin kết nối AWS Cloud</h3>
+                    <p>Kiến trúc Serverless kết nối với Backend & Database</p>
+                  </div>
+                </div>
+                <div class="settings-card-body">
+                  <div class="aws-info-list">
+                    <div class="aws-info-row">
+                      <span class="info-label">API Gateway Endpoint</span>
+                      <span class="info-value font-mono"
+                        >https://amn08je3vj.execute-api.us-east-1.amazonaws.com/dev</span
+                      >
+                    </div>
+                    <div class="aws-info-row">
+                      <span class="info-label">Active AWS Region</span>
+                      <span class="info-value"
+                        >us-east-1 (US East - N. Virginia)</span
+                      >
+                    </div>
+                    <div class="aws-info-row">
+                      <span class="info-label">DynamoDB Table</span>
+                      <span class="info-value font-mono"
+                        >ExpenseTransactions (PK: userId, SK:
+                        transactionId)</span
+                      >
+                    </div>
+                    <div class="aws-info-row">
+                      <span class="info-label">S3 Raw Receipt Bucket</span>
+                      <span class="info-value font-mono"
+                        >expense-raw-receipts-24110286</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <!-- Bảng danh sách giao dịch full-width -->
-          <section class="table-panel" id="transactions-section">
-            <div class="table-wrap">
-              <table class="styled-table">
-                <thead>
-                  <tr>
-                    <th style="width: 130px">Thời gian</th>
-                    <th>Cửa hàng / người nhận</th>
-                    <th style="width: 180px">Danh mục</th>
-                    <th style="width: 150px">Nguồn dữ liệu</th>
-                    <th style="width: 160px">Số tiền</th>
-                    <th style="width: 60px; text-align: right">Hành động</th>
-                  </tr>
-                </thead>
-                <tbody id="transactionsTableBody">
-                  <!-- Populated by JavaScript -->
-                </tbody>
-              </table>
-            </div>
-          </section>
         </div>
-      </div>
-    </main>
-  </div>
+      </main>
+    </div>
 
-  <!-- ==================== MODAL: THÊM CHI TIÊU & QUÉT HÓA ĐƠN HỢP NHẤT ==================== -->
-  <div class="modal-overlay" id="modalAddExpense">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div>
-          <h3>Thêm khoản chi tiêu mới</h3>
-          <span style="
+    <!-- ==================== MODAL: THÊM CHI TIÊU & QUÉT HÓA ĐƠN HỢP NHẤT ==================== -->
+    <div class="modal-overlay" id="modalAddExpense">
+      <div class="modal-box">
+        <div class="modal-header">
+          <div>
+            <h3>Thêm khoản chi tiêu mới</h3>
+            <span
+              style="
                 font-size: 0.74rem;
                 color: var(--text-dim);
                 display: block;
                 margin-top: 2px;
-              ">Tải ảnh hóa đơn để tự động quét hoặc nhập tay trực tiếp</span>
-        </div>
-        <button class="modal-close-btn">&times;</button>
-      </div>
-
-      <!-- Khu vực quét hóa đơn thông minh -->
-      <div class="smart-receipt-uploader" id="receiptDropzone" title="Bấm hoặc kéo thả ảnh hóa đơn vào đây">
-        <div class="uploader-icon-wrap">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
-          </svg>
-        </div>
-        <div class="uploader-text">
-          <div class="uploader-title">
-            <strong>Tải ảnh hóa đơn lên S3</strong> để tự động xử lý qua Textract
+              "
+              >Tải ảnh hóa đơn để tự động quét hoặc nhập tay trực tiếp</span
+            >
           </div>
-          <div class="uploader-hint">
-            Hệ thống sẽ tự động bóc tách và lưu trực tiếp vào cơ sở dữ liệu
+          <button class="modal-close-btn">&times;</button>
+        </div>
+
+        <!-- Khu vực quét hóa đơn thông minh -->
+        <div
+          class="smart-receipt-uploader"
+          id="receiptDropzone"
+          title="Bấm hoặc kéo thả ảnh hóa đơn vào đây"
+        >
+          <div class="uploader-icon-wrap">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+              />
+            </svg>
           </div>
-        </div>
-        <input type="file" id="receiptFileInput" accept="image/*,application/pdf" style="display: none" />
-      </div>
-
-      <div id="uploadStatusText" class="upload-status-bar" style="display: none"></div>
-
-      <div class="modal-divider-text">hoặc nhập thông tin chi tiêu thủ công</div>
-
-      <form class="modal-form" id="formAddExpense">
-        <input type="hidden" id="inputOcrStatus" value="MANUAL" />
-
-        <div class="form-group">
-          <label>Số tiền (VND) *</label>
-          <input type="number" class="form-input" id="inputAmount" placeholder="Ví dụ: 45000" required min="1000" />
-        </div>
-
-        <div class="form-group">
-          <label>Tên cửa hàng / dịch vụ *</label>
-          <input type="text" class="form-input" id="inputMerchant" placeholder="Ví dụ: Cơm tấm Ba Ghiền" required />
-        </div>
-
-        <div class="form-group">
-          <label>Danh mục chi tiêu</label>
-          <input type="hidden" id="selectCategory" name="category" value="Food & Dining" />
-
-          <div class="custom-select-wrapper" id="customCategoryDropdown">
-            <button type="button" class="custom-select-trigger" id="categoryTriggerBtn">
-              <div class="custom-select-selected-val">
-                <span class="custom-cat-icon-badge" id="selectedCatIcon"></span>
-                <span class="custom-cat-title" id="selectedCatText">Food & Dining</span>
-              </div>
-              <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke-width="2" stroke="currentColor" style="width: 16px; height: 16px; flex-shrink: 0">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-              </svg>
-            </button>
-
-            <div class="custom-select-options" id="categoryOptionsList">
-              <!-- Sẽ được khởi tạo động từ CONFIG.CATEGORIES với SVG Heroicons -->
+          <div class="uploader-text">
+            <div class="uploader-title">
+              <strong>Tải ảnh hóa đơn lên S3</strong> để tự động xử lý qua
+              Textract
+            </div>
+            <div class="uploader-hint">
+              Hệ thống sẽ tự động bóc tách và lưu trực tiếp vào cơ sở dữ liệu
             </div>
           </div>
+          <input
+            type="file"
+            id="receiptFileInput"
+            accept="image/*,application/pdf"
+            style="display: none"
+          />
         </div>
 
-        <div class="form-group">
-          <label>Ghi chú mô tả</label>
-          <input type="text" class="form-input" id="inputDescription" placeholder="Ví dụ: Ăn trưa cùng đồng nghiệp" />
+        <div
+          id="uploadStatusText"
+          class="upload-status-bar"
+          style="display: none"
+        ></div>
+
+        <div class="modal-divider-text">
+          hoặc nhập thông tin chi tiêu thủ công
         </div>
 
-        <button type="submit" class="action-btn btn-primary"
-          style="width: 100%; justify-content: center; margin-top: 8px">
-          Lưu giao dịch
-        </button>
-      </form>
+        <form class="modal-form" id="formAddExpense">
+          <input type="hidden" id="inputOcrStatus" value="MANUAL" />
+
+          <div class="form-group">
+            <label>Số tiền (VND) *</label>
+            <input
+              type="number"
+              class="form-input"
+              id="inputAmount"
+              placeholder="Ví dụ: 45000"
+              required
+              min="1000"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Tên cửa hàng / dịch vụ *</label>
+            <input
+              type="text"
+              class="form-input"
+              id="inputMerchant"
+              placeholder="Ví dụ: Cơm tấm Ba Ghiền"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Danh mục chi tiêu</label>
+            <input
+              type="hidden"
+              id="selectCategory"
+              name="category"
+              value="Food & Dining"
+            />
+
+            <div class="custom-select-wrapper" id="customCategoryDropdown">
+              <button
+                type="button"
+                class="custom-select-trigger"
+                id="categoryTriggerBtn"
+              >
+                <div class="custom-select-selected-val">
+                  <span
+                    class="custom-cat-icon-badge"
+                    id="selectedCatIcon"
+                  ></span>
+                  <span class="custom-cat-title" id="selectedCatText"
+                    >Food & Dining</span
+                  >
+                </div>
+                <svg
+                  class="chevron-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  style="width: 16px; height: 16px; flex-shrink: 0"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </button>
+
+              <div class="custom-select-options" id="categoryOptionsList">
+                <!-- Sẽ được khởi tạo động từ CONFIG.CATEGORIES với SVG Heroicons -->
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Ghi chú mô tả</label>
+            <input
+              type="text"
+              class="form-input"
+              id="inputDescription"
+              placeholder="Ví dụ: Ăn trưa cùng đồng nghiệp"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="action-btn btn-primary"
+            style="width: 100%; justify-content: center; margin-top: 8px"
+          >
+            Lưu giao dịch
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="js/config.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/charts.js"></script>
-  <script src="js/calendar.js"></script>
-  <script src="js/app.js"></script>
-</body>
-
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>
