@@ -111,7 +111,20 @@ const ExpenseApi = {
         const data = await res.json();
         const allData = Array.isArray(data) ? data : (data.items || []);
         // Đảm bảo chỉ trả về giao dịch thuộc đúng tháng được chọn
-        return allData.filter(t => !t.createdAt || t.createdAt.startsWith(month));
+        // Chuẩn hóa ngày: nếu Textract quét ra ngày cũ trên hóa đơn giấy (ví dụ 2025-05)
+        // nhưng Sort Key ghi nhận trong tháng hiện tại (TX_2026-10...), fallback về ngày ghi nhận để hiển thị mượt mà
+        return allData.map(t => {
+            const rawDate = t.createdAt || "";
+            if (!rawDate.startsWith(month) && t.transactionId && t.transactionId.startsWith(`TX_${month}`)) {
+                const effectiveDate = t.transactionId.substring(3, 13);
+                return {
+                    ...t,
+                    originalReceiptDate: t.createdAt,
+                    createdAt: effectiveDate
+                };
+            }
+            return t;
+        }).filter(t => !t.createdAt || t.createdAt.startsWith(month));
     },
 
     /**

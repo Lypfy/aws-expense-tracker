@@ -160,7 +160,7 @@ const UiService = {
                             </div>
                             <div>
                                 <div class="merchant-name-text">${this.escapeHtml(t.merchant || "Không tên")}</div>
-                                <div class="merchant-desc-text">${this.escapeHtml(t.description || "")}</div>
+                                <div class="merchant-desc-text">${this.escapeHtml(t.originalReceiptDate ? `${t.description || ''} (Ngày HĐ: ${t.originalReceiptDate})` : (t.description || ""))}</div>
                             </div>
                         </div>
                     </td>
